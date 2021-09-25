@@ -142,7 +142,7 @@
                             @endphp
                         <div class="product">
                             <div class="product_image"><a href="{{route('showProduct', ['category', $product->id])}}"><img src="/images/{{$image}}" alt=""></a></div>
-                            <div class="product_extra product_new"><a href="{{route('showProduct', ['category', $product->category['alias']])}}">{{$product->category['title']}}</a></div>
+                            <div class="product_extra product_new"><a href="{{route('showCategory', [$product->category['alias']])}}">{{$product->category['title']}}</a></div>
                             <div class="product_content">
                                 <div class="product_title"><a href="{{route('showProduct', ['category', $product->id])}}">{{$product->title}}</a></div>
                                 @if($product->new_price != null)
