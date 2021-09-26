@@ -17,17 +17,17 @@ class ProductController extends Controller
     public function showCategory(Request $request, $cat_alias){
         $cat = Category::where('alias', $cat_alias)->first();
 
-        $products = Product::where('category_id', $cat->id)->get();
+        $products = Product::where('category_id', $cat->id)->paginate(2);
 
         if(isset($request->orderBy)){
             if($request->orderBy == 'price-low-high'){
-                $products = Product::where('category_id', $cat->id)->orderBy('price')->get();
+                $products = Product::where('category_id', $cat->id)->orderBy('price')->paginate(2);
             }
             if($request->orderBy == 'price-high-low'){
-                $products = Product::where('category_id', $cat->id)->orderBy('price', 'desc')->get();
+                $products = Product::where('category_id', $cat->id)->orderBy('price', 'desc')->paginate(2);
             }
             if($request->orderBy == 'name'){
-                $products = Product::where('category_id', $cat->id)->orderBy('title')->get();
+                $products = Product::where('category_id', $cat->id)->orderBy('title')->paginate(2);
             }
         }
 
@@ -35,6 +35,6 @@ class ProductController extends Controller
             return view('ajax.order-by', compact('products'))->render();
         }
 
-        return view('categories.show', compact('cat'));
+        return view('categories.show', compact('cat', 'products'));
     }
 }

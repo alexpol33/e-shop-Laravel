@@ -15,7 +15,8 @@
                     url: '/{{$cat->alias}}',
                     type: "GET",
                     data: {
-                        orderBy: orderBy
+                        orderBy: orderBy,
+                        page: {{isset($_GET['page']) ? $_GET['page'] : 1 }}
                     },
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -24,7 +25,7 @@
                         let positionParameters = location.pathname.indexOf('?');
                         let url = location.pathname.substring(positionParameters,location.pathname.length);
                         let newURL = url + '?'; // http://127.0.0.1:8001/phones?
-                        newURL += "&page={{isset($_GET['page']) ? $_GET['page'] : 1}}"+'orderBy=' + orderBy; // http://127.0.0.1:8001/phones?orderBy=name-z-a
+                        newURL += 'orderBy=' + orderBy + "&page={{isset($_GET['page']) ? $_GET['page'] : 1}}"; // http://127.0.0.1:8001/phones?orderBy=name-z-a
                         history.pushState({}, '', newURL);
                      //   console.log(data)
                         $('.product_grid').html(data)
@@ -77,7 +78,7 @@
 
                     <!-- Product Sorting -->
                     <div class="sorting_bar d-flex flex-md-row flex-column align-items-md-center justify-content-md-start">
-                        <div class="results">Showing <span>{{$cat->products->count()}}</span> results</div>
+                        <div class="results">Showing <span>{{$products->count()}}</span> results</div>
                         <div class="sorting_container ml-md-auto">
                             <div class="sorting">
                                 <ul class="item_sorting">
@@ -101,7 +102,7 @@
                 <div class="col">
 
                     <div class="product_grid">
-                        @foreach($cat->products as $product)
+                        @foreach($products as $product)
                             @php
                                 $image = '';
                                     if(count($product->images) > 0){
@@ -123,15 +124,8 @@
                                 </div>
                             </div>
                         @endforeach
-
                     </div>
-                    <div class="product_pagination">
-                        <ul>
-                            <li class="active"><a href="#">01.</a></li>
-                            <li><a href="#">02.</a></li>
-                            <li><a href="#">03.</a></li>
-                        </ul>
-                    </div>
+                    {{$products->appends(request()->query())->links('pagination.index')}}
 
                 </div>
             </div>
