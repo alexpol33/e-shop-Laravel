@@ -10,7 +10,13 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
     public function index(){
-        return view('cart.index');
+        if(!isset($_COOKIE['cart_id'])) setcookie('cart_id', uniqid());
+        $cart_id = $_COOKIE['cart_id'];
+        \Cart::session($cart_id);
+        $products = \Cart::getContent();
+        $products = $products->toArray();
+
+        return view('cart.index', compact('products'));
     }
 
     public function addToCart(Request $request){
