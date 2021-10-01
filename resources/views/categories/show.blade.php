@@ -1,22 +1,23 @@
 @extends('layouts.main')
 @section('title', $cat->title)
 @section('custom_css')
-    <link rel="stylesheet" type="text/css" href="styles/categories.css">
-    <link rel="stylesheet" type="text/css" href="styles/categories_responsive.css">
+    <link rel="stylesheet" type="text/css" href="/styles/categories.css">
+    <link rel="stylesheet" type="text/css" href="/styles/categories_responsive.css">
 @endsection
 
 @section('custom_js')
-    <script src="js/categories.js"></script>
+    <script src="/js/categories.js"></script>
     <script>
         $(document).ready(function () {
             $('.product_sorting_btn').click(function () {
                 let orderBy = $(this).data('order')
+                $('.sorting_text').text($(this).find('span').text())
                 $.ajax({
-                    url: '/{{$cat->alias}}',
+                    url: "{{route('showCategory',$cat->alias)}}",
                     type: "GET",
                     data: {
                         orderBy: orderBy,
-                        page: {{isset($_GET['page']) ? $_GET['page'] : 1 }}
+                        page: {{isset($_GET['page']) ? $_GET['page'] : 1}},
                     },
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -25,13 +26,14 @@
                         let positionParameters = location.pathname.indexOf('?');
                         let url = location.pathname.substring(positionParameters,location.pathname.length);
                         let newURL = url + '?'; // http://127.0.0.1:8001/phones?
-                        newURL += 'orderBy=' + orderBy + "&page={{isset($_GET['page']) ? $_GET['page'] : 1}}"; // http://127.0.0.1:8001/phones?orderBy=name-z-a
+                        newURL += "&page={{isset($_GET['page']) ? $_GET['page'] : 1}}"+'orderBy=' + orderBy; // http://127.0.0.1:8001/phones?orderBy=name-z-a
                         history.pushState({}, '', newURL);
-                     //   console.log(data)
+                        $('.product_pagination a').each(function(index, value){
+                            let link= $(this).attr('href')
+                            $(this).attr('href',link+'&orderBy='+orderBy)
+                        })
                         $('.product_grid').html(data)
-
                         $('.product_grid').isotope('destroy')
-
                         $('.product_grid').imagesLoaded( function() {
                             let grid = $('.product_grid').isotope({
                                 itemSelector: '.product',
@@ -41,10 +43,11 @@
                                         gutter: 30
                                     }
                             });
-                    })
-                }
+                        });
+                    }
+                });
             })
-        })})
+        })
     </script>
 @endsection
 
@@ -112,9 +115,9 @@
                                     }
                             @endphp
                             <div class="product">
-                                <div class="product_image"><a href="{{route('showProduct', ['category', $product->id])}}"><img src="/images/{{$image}}" alt=""></a></div>
+                                <div class="product_image"><a href="{{route('showProduct', [$product->category['alias'], $product->id])}}"><img src="/images/{{$image}}" alt=""></a></div>
                                 <div class="product_content">
-                                    <div class="product_title"><a href="{{route('showProduct', ['category', $product->id])}}">{{$product->title}}</a></div>
+                                    <div class="product_title"><a href="{{route('showProduct', [$product->category['alias'], $product->id])}}">{{$product->title}}</a></div>
                                     @if($product->new_price != null)
                                         <div style="text-decoration: line-through">${{$product->price}}</div>
                                         <div class="product_price">${{$product->new_price}}</div>

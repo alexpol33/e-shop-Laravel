@@ -4,9 +4,7 @@
     <link rel="stylesheet" type="text/css" href="/styles/product.css">
     <link rel="stylesheet" type="text/css" href="/styles/product_responsive.css">/
 @endsection
-@section('custom_js')
-    <script src="/js/product.js"></script>
-@endsection
+
 
 @section('content')
     <div class="home">
@@ -210,4 +208,37 @@
             </div>
         </div>
     </div>
+@endsection
+@section('custom_js')
+    <script src="/js/product.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('.cart_button').click(function (event) {
+                addToCart();
+            })
+        })
+        function addToCart() {
+            const qty_el = document.getElementById('quantity_input')
+            let qty = qty_el.value
+
+            $.ajax({
+                url: '{{route('addToCart')}}',
+                type: "POST",
+                data: {
+                    id: {{$item->id}},
+                    qty: qty
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: (data) => {
+                    console.log(data)
+                }
+            })}
+    </script>
 @endsection
