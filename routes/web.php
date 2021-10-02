@@ -23,6 +23,6 @@ Route::get('/category/{cat}/{prod_id}', 'App\Http\Controllers\ProductController@
 
 Route::post('/add-to-cart', 'App\Http\Controllers\CartController@addToCart')->name('addToCart');
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
