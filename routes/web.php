@@ -13,10 +13,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
-Route::get('/', 'App\Http\Controllers\HomeController@index');
+Route::get('/', 'App\Http\Controllers\HomeController@start');
 Route::get('/category/{cat}', 'App\Http\Controllers\ProductController@showCategory')->name('showCategory');
 Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cartIndex')->name('cartIndex');
 Route::get('/category/{cat}/{prod_id}', 'App\Http\Controllers\ProductController@getProduct')->name('showProduct');
 
+
 Route::post('/add-to-cart', 'App\Http\Controllers\CartController@addToCart')->name('addToCart');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

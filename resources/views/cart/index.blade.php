@@ -91,7 +91,7 @@
                         <div class="button continue_shopping_button"><a href="#">Continue shopping</a></div>
                         <div class="cart_buttons_right ml-lg-auto">
                             <div class="button clear_cart_button"><a href="#">Clear cart</a></div>
-                            <div class="button update_cart_button"><a href="#">Update cart</a></div>
+                            <div class="button update_cart_button"><a href="/cart">Update cart</a></div>
                         </div>
                     </div>
                 </div>
