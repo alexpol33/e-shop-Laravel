@@ -5,13 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class CartController extends Controller
 {
     public function index(){
-        if(!isset($_COOKIE['cart_id'])) setcookie('cart_id', uniqid());
-        $cart_id = $_COOKIE['cart_id'];
+        if(!Auth::check()){
+            if(!isset($_COOKIE['cart_id'])) setcookie('cart_id', uniqid());
+            $cart_id = $_COOKIE['cart_id'];
+        }else{
+            $cart_id = \auth()->id();
+        }
+
+
         \Cart::session($cart_id);
         $products = \Cart::getContent();
         $products = $products->toArray();
@@ -22,8 +29,14 @@ class CartController extends Controller
     public function addToCart(Request $request){
         $product = Product::where('id', (int)$request->id)->first();
 
-        if(!isset($_COOKIE['cart_id'])) setcookie('cart_id', uniqid());
-        $cart_id = $_COOKIE['cart_id'];
+        if(!Auth::check()){
+            if(!isset($_COOKIE['cart_id'])) setcookie('cart_id', uniqid());
+            $cart_id = $_COOKIE['cart_id'];
+        }else{
+            $cart_id = \auth()->id();
+        }
+
+
         \Cart::session($cart_id);
 
         \Cart::add([

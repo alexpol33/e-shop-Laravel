@@ -1,4 +1,3 @@
-{{print_r($products)}}
 @extends('layouts.main')
 @section('title', 'Cart')
 @section('custom_css')

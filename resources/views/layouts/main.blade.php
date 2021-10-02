@@ -68,7 +68,15 @@
 													c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h45.2l26.9,302.3C412.8,445.2,392.1,462,366.8,462z"/>
                                             </g>
 										</svg>
-                                        <div>Cart <span>({{\Cart::session($_COOKIE['cart_id'])->getTotalQuantity()}})</span></div>
+                                        @php
+                                        if(!Auth::check()){
+                                        if(!isset($_COOKIE['cart_id'])) setcookie('cart_id', uniqid());
+                                        $cart_id = $_COOKIE['cart_id'];
+                                        }else{
+                                        $cart_id = \auth()->id();
+                                        }
+                                        @endphp
+                                        <div>Cart <span>({{\Cart::session($cart_id)->getTotalQuantity()}})</span></div>
                                     </a>
                                 </div>
                                 <div class="search">
