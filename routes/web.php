@@ -26,3 +26,10 @@ Route::post('/add-to-cart', 'App\Http\Controllers\CartController@addToCart')->na
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::get('/test', function (){
+        echo 'Hello';
+    });
+});
+
