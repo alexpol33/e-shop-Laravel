@@ -28,6 +28,6 @@ Route::post('/add-to-cart', 'App\Http\Controllers\CartController@addToCart')->na
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['role:admin'])->prefix('admin')->group(function () {
-    Route::get('/', 'App\Http\Controllers\Admin\AdminController@index');
+    Route::get('/', 'App\Http\Controllers\Admin\AdminController@index')->name('homeAdmin');
 });
 
