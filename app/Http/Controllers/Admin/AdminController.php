@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
    public function index(){
-        return view('admin.index');
+       $products_count = Product::all()->count();
+
+        return view('admin.index', [
+            'products_count' => $products_count
+        ]);
    }
 }
