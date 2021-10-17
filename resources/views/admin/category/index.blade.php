@@ -35,22 +35,24 @@
                                 <th>
                             </tr>
                             </thead>
-                            <tbody>
+                            @foreach($categories as $category)
+
+                                <tbody>
                                 <tr>
                                     <td>
-                                        1
+                                        {{$category['id']}}
                                     </td>
                                     <td>
                                         <a>
-                                            Тест
+                                            {{$category['title']}}
                                         </a>
                                         <br/>
                                         <small>
-                                            Created 01.01.2019
+                                            {{$category['created_at']}}}
                                         </small>
                                     </td>
                                     <td id="описание">
-
+                                        {{$category['desc']}}
                                     </td>
 
                                     <td class="project-actions text-right">
@@ -66,7 +68,8 @@
                                         </a>
                                     </td>
                                 </tr>
-                            </tbody>
+                                </tbody>
+                            @endforeach
                         </table>
                     </div>
                     <!-- /.card-body -->

@@ -15,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.index');
+        $categories = Category::orderBy('created_at', 'desc')->get();
+
+        return view('admin.category.index', compact('categories'));
     }
 
     /**
