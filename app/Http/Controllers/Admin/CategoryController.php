@@ -36,7 +36,8 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new_category = Category::create($request->all());
+        return redirect()->back()->withSuccess('Категория была добавлена');
     }
 
     /**

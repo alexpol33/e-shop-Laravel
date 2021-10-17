@@ -9,6 +9,11 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $guarded = [
+        '_method',
+        '_token'
+    ];
+
     public function products(){
         return $this->hasMany('App\Models\Product');
     }
