@@ -95,7 +95,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link">
+                                <a href="{{route('product.create')}}" class="nav-link">
                                     <p>Добавить товар</p>
                                 </a>
                             </li>
