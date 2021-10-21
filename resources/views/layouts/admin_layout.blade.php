@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="/admin_panel/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="/admin_panel/plugins/summernote/summernote-bs4.min.css">
+    <link href="/admin_panel/dist/css/colorbox.css" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -176,6 +177,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/admin_panel/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script type="text/javascript" src="/packages/barryvdh/elfinder/js/standalonepopup.js"></script>
+    <script type="text/javascript" src="/admin_panel/dist/js/jquery.colorbox-min.js"></script>
 <script src="/admin_panel/dist/js/pages/dashboard.js"></script>
     <script src="https://cdn.tiny.cloud/1/klt7ksimqe4llnrtp6gw2utueyxuq66za248zjnve1j9mj5u/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="/admin_panel/admin.js"></script>

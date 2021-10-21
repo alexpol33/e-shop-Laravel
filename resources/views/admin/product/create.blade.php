@@ -55,6 +55,11 @@
                             <div class="form-group">
                                 <textarea></textarea>
                             </div>
+                            <div class="form-group">
+                                <label for="feature_image">Feature Image</label>
+                                <input type="text" class="form-control" id="feature_image" name="feature_image" value="">
+                                <a href="" class="popup_selector" data-inputid="feature_image">Select Image</a>
+                            </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-info">Добавить</button>
