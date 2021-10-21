@@ -32,19 +32,15 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Название</label>
                                 <div class="col-sm-10">
-                                    <input name="title" class="form-control" placeholder="Введите название категории" required>
+                                    <input name="title" class="form-control" placeholder="Введите название товара" required>
                                 </div>
                                 <label class="col-sm-2 col-form-label">Описание</label>
                                 <div class="col-sm-10">
-                                    <input name="desc" class="form-control" placeholder="Введите описание категории" required>
+                                    <input name="desc" class="form-control" placeholder="Введите описание товара" required>
                                 </div>
                                 <label class="col-sm-2 col-form-label">Изображение</label>
                                 <div class="col-sm-10">
-                                    <input name="img" class="form-control" placeholder="Введите картинку категории" required>
-                                </div>
-                                <label class="col-sm-2 col-form-label">Алиас</label>
-                                <div class="col-sm-10">
-                                    <input name="alias" class="form-control" placeholder="Введите сокращение категории" required>
+                                    <input name="img" class="form-control" placeholder="Введите картинку товара" required>
                                 </div>
                                 <div class="form-group">
                                     <div class="form-group"></div>
@@ -55,6 +51,9 @@
                                         @endforeach
                                     </select>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea></textarea>
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
