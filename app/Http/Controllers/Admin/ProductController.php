@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -39,7 +40,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product();
+        $product->title = $request->title;
+        $product->price = $request->price;
+        $product->description = $request->desc;
+        $product->category_id = $request->category_id;
+        $product->save();
+
+        $img = explode('\\', $request->img);
+        $image_name = $img[1];
+
+        $image = new ProductImage();
+        $image->name = $image_name;
+        $image->product_id = $product->id;
+        $image->save();
     }
 
     /**

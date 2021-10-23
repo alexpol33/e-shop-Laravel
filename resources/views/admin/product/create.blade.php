@@ -38,9 +38,9 @@
                                 <div class="col-sm-10">
                                     <input name="desc" class="form-control" placeholder="Введите описание товара" required>
                                 </div>
-                                <label class="col-sm-2 col-form-label">Изображение</label>
+                                <label class="col-sm-2 col-form-label">Цена</label>
                                 <div class="col-sm-10">
-                                    <input name="img" class="form-control" placeholder="Введите картинку товара" required>
+                                    <input name="price" class="form-control" placeholder="Введите цену товара" required>
                                 </div>
                                 <div class="form-group">
                                     <div class="form-group"></div>
@@ -57,7 +57,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="feature_image">Feature Image</label>
-                                <input type="text" class="form-control" id="feature_image" name="feature_image" value="">
+                                <input type="text" name="img" class="form-control" id="feature_image" value="">
                                 <a href="" class="popup_selector" data-inputid="feature_image">Select Image</a>
                             </div>
                             <!-- /.card-body -->
