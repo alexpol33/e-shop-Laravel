@@ -54,6 +54,7 @@ class ProductController extends Controller
         $image->name = $image_name;
         $image->product_id = $product->id;
         $image->save();
+        return redirect()->back()->withSuccess;
     }
 
     /**
